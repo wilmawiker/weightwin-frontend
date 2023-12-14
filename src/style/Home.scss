@@ -1,0 +1,17 @@
+@use "./variables" as v;
+
+a {
+  color: v.$accent-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  .material-symbols-outlined {
+    font-size: 3em;
+  }
+
+  p {
+    margin: 0;
+  }
+}

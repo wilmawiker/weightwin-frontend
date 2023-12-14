@@ -1,0 +1,55 @@
+@use "./variables" as v;
+body {
+  margin: 0;
+  padding: 0;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6em;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 2em;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2em;
+
+      input {
+        width: 90vw;
+        height: 47px;
+
+        &:hover {
+          border-color: v.$accent-color;
+        }
+
+        &::placeholder {
+          color: v.$tertiary-color;
+        }
+      }
+
+      .btn-and-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        a {
+          text-decoration: none;
+        }
+
+        button {
+          width: 90vw;
+          height: 47px;
+        }
+      }
+    }
+  }
+}
