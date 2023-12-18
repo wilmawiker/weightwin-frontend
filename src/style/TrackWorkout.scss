@@ -1,0 +1,31 @@
+@use "./variables" as v;
+
+.proceed-or-cancel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5em;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-size: 1em;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+  .add-btn {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$accent-color;
+    color: v.$primary-color;
+    border-radius: 5px;
+    font-size: 2em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+}

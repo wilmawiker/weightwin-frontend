@@ -4,8 +4,10 @@ import { InputStyled } from "../styled-components/InputStyled";
 import { Link } from "react-router-dom";
 import { ButtonStyled } from "../styled-components/ButtonStyled";
 import { PStyled } from "../styled-components/PStyled";
+import { SelectStyled } from "../styled-components/SelectStyled";
+import moment from "moment";
 
-export const Login = () => {
+export const CreateAccount = () => {
   return (
     <>
       <div className="container">
@@ -14,13 +16,24 @@ export const Login = () => {
         </div>
         <div className="login-form">
           <InputStyled placeholder="Email"></InputStyled>
+          <InputStyled placeholder="Username"></InputStyled>
+          <SelectStyled>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
+            <option value="Other">Other</option>
+          </SelectStyled>
+          <InputStyled
+            placeholder="Birthdate"
+            type="date"
+            max={moment().format("YYYY-MM-DD")}
+          ></InputStyled>
           <InputStyled placeholder="Password" type="password"></InputStyled>
           <div className="btn-and-link">
-            <Link to="/home">
-              <ButtonStyled>Log in</ButtonStyled>
+            <Link to="/">
+              <ButtonStyled>Create account</ButtonStyled>
             </Link>
-            <Link to="/create-account">
-              <PStyled>or Create Account</PStyled>
+            <Link to="/">
+              <PStyled>or Log in</PStyled>
             </Link>
           </div>
         </div>

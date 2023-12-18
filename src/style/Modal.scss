@@ -1,0 +1,70 @@
+@use "./variables" as v;
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80vw;
+    background-color: v.$primary-color;
+    padding: 0.5em;
+
+    .modal-header {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-left: auto;
+      color: v.$secondary-color;
+      font-size: 0.5em;
+      margin-bottom: 1em;
+    }
+
+    .modal-main {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 1em;
+      .modal-btn {
+        width: 100%;
+        background-color: v.$tertiary-color;
+        border-radius: 5px;
+        font-size: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5em;
+
+        &:first-child {
+          background-color: v.$accent-color;
+        }
+
+        a {
+          color: v.$secondary-color;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+
+          &:first-child {
+            color: v.$primary-color;
+          }
+        }
+      }
+    }
+  }
+}
