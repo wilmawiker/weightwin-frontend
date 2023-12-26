@@ -1,0 +1,31 @@
+@use "./variables" as v;
+
+.information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  padding: 1em;
+  background-color: v.$tertiary-color;
+  gap: 1em;
+
+  .information-btn {
+    font-size: 1em;
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+
+    .cancel-btn,
+    .save-btn {
+      font-size: 1em;
+    }
+
+    .cancel-btn {
+      background-color: v.$secondary-color;
+    }
+  }
+}

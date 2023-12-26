@@ -3,13 +3,19 @@ import "../style/Home.scss";
 import { HeaderStyled } from "../styled-components/HeaderStyled";
 import { FooterStyled } from "../styled-components/FooterStyled";
 import { Modal } from "../components/Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../contexts/UserContext";
+
 export const Home = () => {
   const [show, setShow] = useState(false);
+  const user = useContext(UserContext);
+
+  console.log(user);
+
   return (
     <>
       <HeaderStyled>
-        <h2>Hi, Name!</h2>
+        <h2>Hi, {user.username}!</h2>
         <Link to="/settings">
           <span className="material-symbols-outlined">Settings</span>
           <p>Settings</p>
