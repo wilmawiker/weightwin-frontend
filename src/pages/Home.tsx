@@ -1,25 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/Home.scss";
 import { HeaderStyled } from "../styled-components/HeaderStyled";
 import { FooterStyled } from "../styled-components/FooterStyled";
 import { Modal } from "../components/Modal";
-import { useContext, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
+import { useEffect, useState } from "react";
+import { IUser, defaultUser } from "../models/IUser";
 
 export const Home = () => {
   const [show, setShow] = useState(false);
-  const user = useContext(UserContext);
+  const [user, setUser] = useState<IUser>(defaultUser);
 
-  console.log(user);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const foundUser = JSON.parse(localStorage.getItem("user") || "{}");
+    setUser(foundUser);
+  }, []);
+
+  const handleClick = () => {
+    console.log("clicked");
+    navigate("/settings");
+  };
 
   return (
     <>
       <HeaderStyled>
         <h2>Hi, {user.username}!</h2>
-        <Link to="/settings">
+        <button className="login-btn" onClick={() => handleClick()}>
           <span className="material-symbols-outlined">Settings</span>
           <p>Settings</p>
-        </Link>
+        </button>
       </HeaderStyled>
       <div className="home-container">
         <div className="home-btn" onClick={() => setShow(true)}>

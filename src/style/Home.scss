@@ -1,7 +1,10 @@
 @use "./variables" as v;
 
-a {
+.logout-btn,
+.login-btn {
   color: v.$accent-color;
+  background-color: transparent;
+  border: none;
   display: flex;
   flex-direction: column;
   justify-content: center;

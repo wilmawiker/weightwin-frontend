@@ -1,5 +1,5 @@
 export interface IUser {
-  id: string;
+  _id: string;
   username: string;
   email: string;
   password: string;
@@ -8,7 +8,7 @@ export interface IUser {
 }
 
 export const defaultUser: IUser = {
-  id: "",
+  _id: "",
   username: "",
   email: "",
   password: "",

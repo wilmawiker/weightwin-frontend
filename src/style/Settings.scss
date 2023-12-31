@@ -1,5 +1,8 @@
 @use "./variables" as v;
 
+.go-back-btn {
+  font-size: 1em !important;
+}
 .information {
   display: flex;
   flex-direction: column;
@@ -27,5 +30,9 @@
     .cancel-btn {
       background-color: v.$secondary-color;
     }
+  }
+
+  h2 {
+    margin-top: 0.2em;
   }
 }

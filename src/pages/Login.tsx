@@ -1,10 +1,10 @@
 import "../style/Login.scss";
 import WeightWinLogo from "../assets/weightwin-logo.svg";
 import { InputStyled } from "../styled-components/InputStyled";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ButtonStyled } from "../styled-components/ButtonStyled";
 import { PStyled } from "../styled-components/PStyled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { IUser, defaultUser } from "../models/IUser";
 
@@ -12,8 +12,21 @@ export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState<IUser>(defaultUser);
+  const [validationMsg, setValidationMsg] = useState("");
 
-  const handleSubmit = () => {
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
+
+  if (user.username != "") {
+    return <Navigate to="/home"></Navigate>;
+  }
+
+  const handleLogin = () => {
     const configuration = {
       method: "post",
       url: "http://localhost:3000/auth/login",
@@ -25,12 +38,15 @@ export const Login = () => {
 
     axios(configuration)
       .then((result) => {
-        console.log(result.data);
-        setUser(result.data);
+        setUser(result.data.data);
+        localStorage.setItem("user", JSON.stringify(result.data.data));
+        localStorage.setItem("token", result.data.token);
       })
       .catch((error) => {
+        setValidationMsg("Invalid log in credentials");
         console.log(error);
       });
+    return <Navigate to="/home"></Navigate>;
   };
 
   return (
@@ -39,7 +55,7 @@ export const Login = () => {
         <div className="logo">
           <img src={WeightWinLogo} alt="logo" />
         </div>
-        <form className="login-form" onSubmit={() => handleSubmit()}>
+        <div className="login-form">
           <InputStyled
             value={username}
             name="username"
@@ -53,15 +69,14 @@ export const Login = () => {
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           ></InputStyled>
+          <p>{validationMsg}</p>
           <div className="btn-and-link">
-            <Link to="/home">
-              <ButtonStyled onClick={() => handleSubmit()}>Log in</ButtonStyled>
-            </Link>
+            <ButtonStyled onClick={() => handleLogin()}>Log in</ButtonStyled>
             <Link to="/create-account">
               <PStyled>or Create Account</PStyled>
             </Link>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );
