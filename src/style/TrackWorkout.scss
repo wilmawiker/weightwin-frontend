@@ -83,6 +83,14 @@
           margin-right: 1em;
           border-top: 1px solid #bfbeb0;
 
+          .set-rep,
+          .set-weight {
+            border: none;
+            font-size: 1em;
+            width: 25%;
+            background-color: transparent;
+          }
+
           span {
             font-size: 1.5em;
           }
