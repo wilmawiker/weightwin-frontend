@@ -38,6 +38,7 @@ p {
     justify-content: center;
     align-items: center;
     padding: 5px;
+    text-align: center;
 
     a {
       color: v.$secondary-color;
@@ -48,7 +49,7 @@ p {
     }
 
     p {
-      font-size: 24px;
+      font-size: 1.7em;
     }
 
     &:first-child {
@@ -57,7 +58,7 @@ p {
     }
 
     &:last-child {
-      width: 85%;
+      font-size: 0.7em;
     }
   }
 }

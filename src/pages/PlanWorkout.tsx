@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { IExerciseToAdd, ISet } from "../models/IWorkout";
 import axios from "axios";
 
-export const TrackWorkout = () => {
+export const PlanWorkout = () => {
   const [show, setShow] = useState(false);
   const [exercises, setExercises] = useState<IExerciseToAdd[]>([]);
   const [token, setToken] = useState("");
@@ -70,7 +70,7 @@ export const TrackWorkout = () => {
       headers: { Authorization: `Bearer ${token}` },
       data: {
         exercises: exercises,
-        planned: false,
+        planned: true,
       },
     };
 
@@ -117,7 +117,6 @@ export const TrackWorkout = () => {
   };
 
   const showExercises = exercises.map((exercise) => {
-    console.log("hej");
     return (
       <div className="exercise" key={exercise.exerciseId}>
         <div className="exercise-header">

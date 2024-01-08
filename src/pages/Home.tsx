@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../style/Home.scss";
 import { HeaderStyled } from "../styled-components/HeaderStyled";
 import { FooterStyled } from "../styled-components/FooterStyled";
@@ -17,16 +17,27 @@ export const Home = () => {
     setUser(foundUser);
   }, []);
 
-  const handleClick = () => {
-    console.log("clicked");
+  const handleShowSettings = () => {
     navigate("/settings");
+  };
+
+  const handleShowStatistics = () => {
+    navigate("/statistics");
+  };
+
+  const handleShowExercises = () => {
+    navigate("/exercises");
+  };
+
+  const handleShowPlanned = () => {
+    navigate("/planned-workouts");
   };
 
   return (
     <>
       <HeaderStyled>
         <h2>Hi, {user.username}!</h2>
-        <button className="login-btn" onClick={() => handleClick()}>
+        <button className="login-btn" onClick={() => handleShowSettings()}>
           <span className="material-symbols-outlined">Settings</span>
           <p>Settings</p>
         </button>
@@ -37,15 +48,17 @@ export const Home = () => {
           <p>Workout</p>
         </div>
         <Modal onClose={() => setShow(false)} show={show} />
-        <div className="home-btn">
+        <div className="home-btn" onClick={() => handleShowExercises()}>
           <span className="material-symbols-outlined">fitness_center</span>
           <p>Exercises</p>
         </div>
-        <div className="home-btn">
-          <Link to="/statistic">
-            <span className="material-symbols-outlined">show_chart</span>
-            <p>Statistic</p>
-          </Link>
+        <div className="home-btn" onClick={() => handleShowStatistics()}>
+          <span className="material-symbols-outlined">show_chart</span>
+          <p>Statistics</p>
+        </div>
+        <div className="home-btn" onClick={() => handleShowPlanned()}>
+          <span className="material-symbols-outlined">calendar_month</span>
+          <p>Planned workouts</p>
         </div>
       </div>
       <FooterStyled>

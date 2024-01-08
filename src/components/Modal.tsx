@@ -26,7 +26,9 @@ export const Modal = (props: IModalProps) => {
               </Link>
             </div>
             <div className="modal-btn">
-              <p>Plan workout</p>
+              <Link to="/plan-workout">
+                <p>Plan workout</p>
+              </Link>
             </div>
           </div>
         </div>

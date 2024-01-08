@@ -8,6 +8,10 @@ import { createBrowserRouter } from "react-router-dom";
 import { CreateAccount } from "./pages/CreateAccount";
 import { Settings } from "./pages/Settings";
 import { TrackWorkout } from "./pages/TrackWorkout";
+import { Statistics } from "./pages/Statistics";
+import { BrowseExercises } from "./pages/BrowseExercises";
+import { PlannedWorkouts } from "./pages/PlannedWorkouts";
+import { PlanWorkout } from "./pages/PlanWorkout";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +33,22 @@ const router = createBrowserRouter([
   {
     path: "/track-workout",
     element: <TrackWorkout></TrackWorkout>,
+  },
+  {
+    path: "/plan-workout",
+    element: <PlanWorkout></PlanWorkout>,
+  },
+  {
+    path: "/planned-workouts",
+    element: <PlannedWorkouts></PlannedWorkouts>,
+  },
+  {
+    path: "/statistics",
+    element: <Statistics></Statistics>,
+  },
+  {
+    path: "/exercises",
+    element: <BrowseExercises></BrowseExercises>,
   },
 ]);
 

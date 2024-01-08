@@ -50,6 +50,10 @@
 
         &:first-child {
           background-color: v.$accent-color;
+
+          a {
+            color: v.$primary-color;
+          }
         }
 
         a {
@@ -59,10 +63,6 @@
           justify-content: center;
           align-items: center;
           text-decoration: none;
-
-          &:first-child {
-            color: v.$primary-color;
-          }
         }
       }
     }
