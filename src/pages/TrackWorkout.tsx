@@ -139,10 +139,7 @@ export const TrackWorkout = () => {
       return exercise;
     });
 
-    // Update state
     setExercises(updatedExercises);
-
-    // Update local storage
     localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 

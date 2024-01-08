@@ -21,45 +21,50 @@ export const PlanWorkout = () => {
   }, []);
 
   const addSet = (id: string) => {
-    const exercise: IExerciseToAdd = exercises.find(
-      (exercise) => exercise.exerciseId === id
-    )!;
+    const updatedExercises = exercises.map((exercise) => {
+      if (exercise.exerciseId === id) {
+        const lastId: number = exercise.set.length;
+        const newSet: ISet = {
+          id: lastId + 1,
+          reps: 0,
+          weight: 0,
+        };
+        return {
+          ...exercise,
+          set: [...exercise.set, newSet],
+        };
+      }
+      return exercise;
+    });
 
-    if (exercise.exerciseId === id) {
-      const lastSet: ISet[] = exercise.set.slice(-1);
-      const lastId = lastSet[0].id;
-      console.log(lastId);
-      const set: ISet = {
-        id: lastId + 1,
-        reps: 0,
-        weight: 0,
-      };
-      exercise.set.push(set);
-      localStorage.setItem("addedExercise", JSON.stringify(exercises));
-      setExercises([...exercises, exercise]);
-    }
+    setExercises(updatedExercises);
+
+    localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 
   const deleteExercise = (id: string) => {
-    const exercise: IExerciseToAdd = exercises.find(
-      (exercise) => exercise.exerciseId === id
-    )!;
+    const updatedExercises = exercises.filter(
+      (exercise) => exercise.exerciseId !== id
+    );
 
-    if (exercise.exerciseId === id) {
-      const index = exercises.indexOf(exercise);
-      exercises.splice(index, 1);
-
-      localStorage.setItem("addedExercise", JSON.stringify(exercises));
-      setExercises(exercises);
-    }
+    setExercises(updatedExercises);
+    localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 
-  const deleteSet = (exercise: IExerciseToAdd, set: ISet) => {
-    const i = exercise.set.indexOf(set);
-    exercise.set.splice(i, 1);
+  const deleteSet = (exerciseId: string, set: ISet) => {
+    const updatedExercises = exercises.map((exercise) => {
+      if (exercise.exerciseId === exerciseId) {
+        const updatedSets = exercise.set.filter((s) => s.id !== set.id);
+        return {
+          ...exercise,
+          set: updatedSets,
+        };
+      }
+      return exercise;
+    });
 
-    localStorage.setItem("addedExercise", JSON.stringify(exercises));
-    setExercises([...exercises, exercise]);
+    setExercises(updatedExercises);
+    localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 
   const handleSaveWorkout = () => {
@@ -76,7 +81,7 @@ export const PlanWorkout = () => {
 
     axios(configuration)
       .then(() => {
-        alert("Workout added!");
+        alert("Workout added to planned workouts!");
       })
       .catch(() => {
         throw new Error();
@@ -85,31 +90,57 @@ export const PlanWorkout = () => {
     localStorage.removeItem("addedExercise");
   };
 
-  const handleRepChange = (
-    id: number,
-    value: number,
-    exercise: IExerciseToAdd
-  ) => {
-    console.log(id);
-    const set: ISet = exercise.set.find((set) => set.id === id)!;
-    if (set.id === id) {
-      set.reps = value;
-      localStorage.setItem("addedExercise", JSON.stringify(exercises));
-      setExercises([...exercises, exercise]);
-    }
+  const handleRepChange = (id: number, value: number, exerciseId: string) => {
+    const updatedExercises = exercises.map((exercise) => {
+      if (exercise.exerciseId === exerciseId) {
+        const updatedSets = exercise.set.map((set) => {
+          if (set.id === id) {
+            return {
+              ...set,
+              reps: value,
+            };
+          }
+          return set;
+        });
+
+        return {
+          ...exercise,
+          set: updatedSets,
+        };
+      }
+      return exercise;
+    });
+    setExercises(updatedExercises);
+    localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 
   const handleWeightChange = (
     id: number,
     value: number,
-    exercise: IExerciseToAdd
+    exerciseId: string
   ) => {
-    const set: ISet = exercise.set.find((set) => set.id === id)!;
-    if (set.id === id) {
-      set.weight = value;
-      localStorage.setItem("addedExercise", JSON.stringify(exercises));
-      setExercises([...exercises, exercise]);
-    }
+    const updatedExercises = exercises.map((exercise) => {
+      if (exercise.exerciseId === exerciseId) {
+        const updatedSets = exercise.set.map((set) => {
+          if (set.id === id) {
+            return {
+              ...set,
+              weight: value,
+            };
+          }
+          return set;
+        });
+
+        return {
+          ...exercise,
+          set: updatedSets,
+        };
+      }
+      return exercise;
+    });
+
+    setExercises(updatedExercises);
+    localStorage.setItem("addedExercise", JSON.stringify(updatedExercises));
   };
 
   const handleCancel = () => {
@@ -139,7 +170,11 @@ export const PlanWorkout = () => {
                   className="set-rep"
                   placeholder={`${set.reps} reps`}
                   onChange={(e) =>
-                    handleRepChange(set.id, Number(e.target.value), exercise)
+                    handleRepChange(
+                      set.id,
+                      Number(e.target.value),
+                      exercise.exerciseId
+                    )
                   }
                 />
                 <input
@@ -148,12 +183,16 @@ export const PlanWorkout = () => {
                   className="set-weight"
                   placeholder={`${set.weight} kg`}
                   onChange={(e) =>
-                    handleWeightChange(set.id, Number(e.target.value), exercise)
+                    handleWeightChange(
+                      set.id,
+                      Number(e.target.value),
+                      exercise.exerciseId
+                    )
                   }
                 />
                 <span
                   className="material-symbols-outlined"
-                  onClick={() => deleteSet(exercise, set)}
+                  onClick={() => deleteSet(exercise.exerciseId, set)}
                 >
                   delete
                 </span>
