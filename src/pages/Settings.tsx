@@ -38,7 +38,7 @@ export const Settings = () => {
     const userId = user._id;
     const configuration = {
       method: "put",
-      url: `http://localhost:3000/user/${userId}`,
+      url: `https://weightwin-backend.vercel.app/user/${userId}`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         email,

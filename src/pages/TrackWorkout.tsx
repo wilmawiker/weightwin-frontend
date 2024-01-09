@@ -71,7 +71,7 @@ export const TrackWorkout = () => {
     console.log(exercises);
     const configuration = {
       method: "post",
-      url: `http://localhost:3000/user/workouts`,
+      url: `https://weightwin-backend.vercel.app/user/workouts`,
       headers: { Authorization: `Bearer ${token}` },
       data: {
         exercises: exercises,

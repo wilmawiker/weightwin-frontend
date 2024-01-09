@@ -29,7 +29,7 @@ export const Login = () => {
   const handleLogin = () => {
     const configuration = {
       method: "post",
-      url: "http://localhost:3000/auth/login",
+      url: "https://weightwin-backend.vercel.app/auth/login",
       data: {
         username,
         password,
