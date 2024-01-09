@@ -19,7 +19,7 @@ export const CreateAccount = () => {
   const handleSubmit = () => {
     const configuration = {
       method: "post",
-      url: "http://localhost:3000/auth/register",
+      url: "https://weightwin-backend.vercel.app/auth/register",
       data: {
         email,
         username,
