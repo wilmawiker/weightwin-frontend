@@ -87,6 +87,10 @@ export const Statistics = () => {
     return (
       <div key={hist._id} className="set">
         <div className="info">
+          <h3>Exercise</h3>
+          <p>{hist.exerciseName}</p>
+        </div>
+        <div className="info">
           <h3>Reps</h3>
           <p>{hist.reps}</p>
         </div>
@@ -101,6 +105,10 @@ export const Statistics = () => {
   const recordsToShow = records.map((rec) => {
     return (
       <div key={rec._id} className="set">
+        <div className="info">
+          <h3>Exercise</h3>
+          <p>{rec.exerciseName}</p>
+        </div>
         <div className="info">
           <h3>Reps</h3>
           <p>{rec.reps}</p>
