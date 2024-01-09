@@ -1,7 +1,7 @@
 import "../style/Login.scss";
 import WeightWinLogo from "../assets/weightwin-logo.svg";
 import { InputStyled } from "../styled-components/InputStyled";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ButtonStyled } from "../styled-components/ButtonStyled";
 import { PStyled } from "../styled-components/PStyled";
 import { SelectStyled } from "../styled-components/SelectStyled";
@@ -15,6 +15,8 @@ export const CreateAccount = () => {
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     const configuration = {
@@ -36,6 +38,8 @@ export const CreateAccount = () => {
       .catch(() => {
         throw new Error();
       });
+
+    navigate("/");
   };
 
   return (
@@ -90,11 +94,9 @@ export const CreateAccount = () => {
             }}
           ></InputStyled>
           <div className="btn-and-link">
-            <Link to="/">
-              <ButtonStyled type="submit" onClick={() => handleSubmit()}>
-                Create account
-              </ButtonStyled>
-            </Link>
+            <ButtonStyled type="submit" onClick={() => handleSubmit()}>
+              Create account
+            </ButtonStyled>
             <Link to="/">
               <PStyled>or Log in</PStyled>
             </Link>
