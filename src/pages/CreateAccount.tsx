@@ -48,7 +48,7 @@ export const CreateAccount = () => {
         <div className="logo">
           <img src={WeightWinLogo} alt="logo" />
         </div>
-        <form className="login-form" onSubmit={() => handleSubmit()}>
+        <div className="login-form">
           <InputStyled
             name="email"
             value={email}
@@ -56,6 +56,7 @@ export const CreateAccount = () => {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
+            required
           ></InputStyled>
           <InputStyled
             name="username"
@@ -64,11 +65,13 @@ export const CreateAccount = () => {
             onChange={(e) => {
               setUsername(e.target.value);
             }}
+            required
           ></InputStyled>
           <SelectStyled
             name="gender"
             value={gender}
             onChange={(e) => setGender(e.target.value)}
+            required
           >
             <option value="Female">Female</option>
             <option value="Male">Male</option>
@@ -83,6 +86,7 @@ export const CreateAccount = () => {
             onChange={(e) => {
               setDateOfBirth(e.target.value);
             }}
+            required
           ></InputStyled>
           <InputStyled
             name="password"
@@ -92,6 +96,7 @@ export const CreateAccount = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
+            required
           ></InputStyled>
           <div className="btn-and-link">
             <ButtonStyled type="submit" onClick={() => handleSubmit()}>
@@ -101,7 +106,7 @@ export const CreateAccount = () => {
               <PStyled>or Log in</PStyled>
             </Link>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );
