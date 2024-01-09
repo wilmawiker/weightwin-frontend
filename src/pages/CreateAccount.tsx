@@ -44,7 +44,7 @@ export const CreateAccount = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="login-container">
         <div className="logo">
           <img src={WeightWinLogo} alt="logo" />
         </div>

@@ -164,32 +164,38 @@ export const PlanWorkout = () => {
             return (
               <div className="set" key={set.id}>
                 <div className="set-id">{set.id}</div>
-                <input
-                  value={set.reps}
-                  name="reps"
-                  className="set-rep"
-                  placeholder={`${set.reps} reps`}
-                  onChange={(e) =>
-                    handleRepChange(
-                      set.id,
-                      Number(e.target.value),
-                      exercise.exerciseId
-                    )
-                  }
-                />
-                <input
-                  value={set.weight}
-                  name="weight"
-                  className="set-weight"
-                  placeholder={`${set.weight} kg`}
-                  onChange={(e) =>
-                    handleWeightChange(
-                      set.id,
-                      Number(e.target.value),
-                      exercise.exerciseId
-                    )
-                  }
-                />
+                <div className="rep-weight-input">
+                  <input
+                    value={set.reps}
+                    name="reps"
+                    className="set-rep"
+                    placeholder={`${set.reps} reps`}
+                    onChange={(e) =>
+                      handleRepChange(
+                        set.id,
+                        Number(e.target.value),
+                        exercise.exerciseId
+                      )
+                    }
+                  />
+                  <p>reps</p>
+                </div>
+                <div className="rep-weight-input">
+                  <input
+                    value={set.weight}
+                    name="weight"
+                    className="set-weight"
+                    placeholder={`${set.weight} kg`}
+                    onChange={(e) =>
+                      handleWeightChange(
+                        set.id,
+                        Number(e.target.value),
+                        exercise.exerciseId
+                      )
+                    }
+                  />
+                  <p>kg</p>
+                </div>
                 <span
                   className="material-symbols-outlined"
                   onClick={() => deleteSet(exercise.exerciseId, set)}

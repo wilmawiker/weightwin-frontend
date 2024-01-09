@@ -1,11 +1,41 @@
-.workout-container {
-  .planned-workout {
-    background-color: aqua;
-    border-radius: 5px;
+@use "./variables" as v;
 
-    ul,
-    li {
-      list-style: none;
+.main-content {
+  margin-top: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cairo", sans-serif;
+
+  .content {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+    gap: 1em;
+
+    .planned-workout {
+      background-color: v.$tertiary-color;
+      border-radius: 5px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1em;
+
+      a {
+        text-decoration: none;
+        color: v.$secondary-color;
+        font-size: 1em;
+      }
+
+      ol {
+        margin-block: 0;
+        padding-inline: 0;
+      }
     }
   }
 }

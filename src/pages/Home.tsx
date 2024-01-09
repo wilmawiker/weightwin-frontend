@@ -5,16 +5,21 @@ import { FooterStyled } from "../styled-components/FooterStyled";
 import { Modal } from "../components/Modal";
 import { useEffect, useState } from "react";
 import { IUser, defaultUser } from "../models/IUser";
+import axios from "axios";
 
 export const Home = () => {
   const [show, setShow] = useState(false);
   const [user, setUser] = useState<IUser>(defaultUser);
+  const [token, setToken] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const foundUser = JSON.parse(localStorage.getItem("user") || "{}");
     setUser(foundUser);
+
+    const foundToken = localStorage.getItem("token") || "";
+    setToken(foundToken);
   }, []);
 
   const handleShowSettings = () => {
@@ -30,7 +35,20 @@ export const Home = () => {
   };
 
   const handleShowPlanned = () => {
-    navigate("/planned-workouts");
+    const configuration = {
+      method: "get",
+      url: `http://localhost:3000/user/${user._id}/planned-workouts`,
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    axios(configuration)
+      .then((result) => {
+        localStorage.setItem("planned-workouts", JSON.stringify(result.data));
+        navigate("/planned-workouts");
+      })
+      .catch(() => {
+        throw new Error();
+      });
   };
 
   return (
