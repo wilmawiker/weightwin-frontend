@@ -1,0 +1,22 @@
+@use "_variables.scss" as v;
+
+.exercise-list {
+  margin-top: 1em;
+  background-color: v.$tertiary-color;
+  border-radius: 5px;
+  padding: 0.5em;
+  margin-bottom: 1em;
+
+  .exercise-to-show {
+    border-bottom: 1px solid v.$secondary-color;
+    width: 100%;
+
+    &:last-child {
+      border-bottom: none;
+    }
+    a {
+      color: v.$secondary-color;
+      text-decoration: none;
+    }
+  }
+}

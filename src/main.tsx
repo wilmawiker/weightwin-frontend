@@ -13,6 +13,7 @@ import { BrowseExercises } from "./pages/BrowseExercises";
 import { PlannedWorkouts } from "./pages/PlannedWorkouts";
 import { PlanWorkout } from "./pages/PlanWorkout";
 import { WorkoutDetail } from "./pages/WorkoutDetail";
+import { ExerciseDetails } from "./pages/ExerciseDetails";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
   {
     path: "/exercises",
     element: <BrowseExercises></BrowseExercises>,
+  },
+  {
+    path: "/exercises/:id",
+    element: <ExerciseDetails></ExerciseDetails>,
   },
 ]);
 

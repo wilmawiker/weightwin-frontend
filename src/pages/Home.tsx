@@ -31,7 +31,22 @@ export const Home = () => {
   };
 
   const handleShowExercises = () => {
-    navigate("/exercises");
+    const configuration = {
+      method: "get",
+      url: "http://localhost:3000/exercises",
+    };
+
+    axios(configuration)
+      .then((result) => {
+        localStorage.setItem(
+          "listOfExercises",
+          JSON.stringify(result.data.data)
+        );
+        navigate("/exercises");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleShowPlanned = () => {
