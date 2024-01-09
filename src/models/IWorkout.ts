@@ -2,6 +2,7 @@
 export interface IWorkout {
   exercises: IExerciseToAdd[];
   planned: boolean;
+  _id: string;
 }
 
 export interface IExerciseToAdd {
@@ -16,6 +17,7 @@ export interface ISet {
 }
 
 export const deafultWorkout: IWorkout = {
+  _id: "",
   exercises: [
     {
       name: "",
