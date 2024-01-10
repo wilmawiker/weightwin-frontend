@@ -28,6 +28,9 @@
       color: v.$secondary-color;
       font-size: 0.5em;
       margin-bottom: 1em;
+      span {
+        cursor: pointer;
+      }
     }
 
     .modal-main {
@@ -38,6 +41,7 @@
       align-items: center;
       gap: 1em;
       margin-bottom: 1em;
+      cursor: pointer;
       .modal-btn {
         width: 100%;
         background-color: v.$tertiary-color;

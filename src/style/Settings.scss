@@ -2,37 +2,51 @@
 
 .go-back-btn {
   font-size: 1em !important;
+  cursor: pointer;
 }
-.information {
+
+.settings-container {
+  margin-top: 4em;
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   justify-content: center;
-  width: 80%;
-  padding: 1em;
-  background-color: v.$tertiary-color;
-  gap: 1em;
-
-  .information-btn {
-    font-size: 1em;
-  }
-
-  .btn-container {
+  align-items: center;
+  gap: 2em;
+  font-family: "Cairo", sans-serif;
+  .information {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1em;
+    flex-direction: column;
+    justify-content: center;
+    width: 80%;
+    padding: 1em;
+    background-color: v.$tertiary-color;
+    gap: 1em;
 
-    .cancel-btn,
-    .save-btn {
+    .information-btn {
       font-size: 1em;
+      cursor: pointer;
     }
 
-    .cancel-btn {
-      background-color: v.$secondary-color;
-    }
-  }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1em;
 
-  h2 {
-    margin-top: 0.2em;
+      .cancel-btn,
+      .save-btn {
+        font-size: 1em;
+        cursor: pointer;
+      }
+
+      .cancel-btn {
+        background-color: v.$secondary-color;
+      }
+    }
+
+    h2 {
+      margin-top: 0.2em;
+    }
   }
 }

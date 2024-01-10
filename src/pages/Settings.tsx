@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import { InputStyled } from "../styled-components/InputStyled";
 import { SelectStyled } from "../styled-components/SelectStyled";
 import moment from "moment";
-import { FooterStyled } from "../styled-components/FooterStyled";
 import { IUser, defaultUser } from "../models/IUser";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { isValidEmail } from "../services/isValidEmail";
 
 export const Settings = () => {
   const [show, setShow] = useState(false);
@@ -19,6 +19,7 @@ export const Settings = () => {
   const [password, setPassword] = useState("");
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
+  const [validationMsg, setValidationMsg] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const foundUser = JSON.parse(localStorage.getItem("user") || "{}");
@@ -35,30 +36,34 @@ export const Settings = () => {
   };
 
   const handleSaveInformation = () => {
-    const userId = user._id;
-    const configuration = {
-      method: "put",
-      url: `https://weightwin-backend.vercel.app/user/${userId}`,
-      headers: { Authorization: `Bearer ${token}` },
-      data: {
-        email,
-        username,
-        gender,
-        dateOfBirth,
-        password,
-      },
-    };
+    if (isValidEmail(email)) {
+      const userId = user._id;
+      const configuration = {
+        method: "put",
+        url: `https://weightwin-backend.vercel.app/user/${userId}`,
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          email,
+          username,
+          gender,
+          dateOfBirth,
+          password,
+        },
+      };
 
-    axios(configuration)
-      .then((result) => {
-        setUser(result.data);
-        localStorage.setItem("user", JSON.stringify(result.data));
-        alert("User updated");
-      })
-      .catch(() => {
-        throw new Error();
-      });
-    setShow(false);
+      axios(configuration)
+        .then((result) => {
+          setUser(result.data);
+          localStorage.setItem("user", JSON.stringify(result.data));
+          alert("User updated");
+        })
+        .catch(() => {
+          throw new Error();
+        });
+      setShow(false);
+    } else {
+      setValidationMsg("Email must be a valid address!");
+    }
   };
 
   const handleClick = () => {
@@ -74,7 +79,7 @@ export const Settings = () => {
           <p>Log out</p>
         </button>
       </HeaderStyled>
-      <div className="home-container">
+      <div className="settings-container">
         <ButtonStyled className="go-back-btn" onClick={() => handleClick()}>
           Back to home page
         </ButtonStyled>
@@ -152,6 +157,7 @@ export const Settings = () => {
                 max={moment().format("YYYY-MM-DD")}
                 onChange={(e) => setDateOfBirth(e.target.value)}
               ></InputStyled>
+              <p>{validationMsg}</p>
               <div className="btn-container">
                 <ButtonStyled
                   className="cancel-btn"
@@ -170,7 +176,6 @@ export const Settings = () => {
           )}
         </div>
       </div>
-      <FooterStyled />
     </>
   );
 };

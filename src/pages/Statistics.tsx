@@ -50,7 +50,7 @@ export const Statistics = () => {
   const getHistoryData = () => {
     const configuration = {
       method: "get",
-      url: `https://weightwin-backend.vercel.app/user/${user._id}/history`,
+      url: `https://weightwin-backend.vercel.app/${user._id}/history`,
       headers: { Authorization: `Bearer ${token}` },
     };
 

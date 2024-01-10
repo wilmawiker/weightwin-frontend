@@ -8,8 +8,10 @@
   margin-left: 1em;
   margin-right: 1em;
   font-size: 1em;
+
   a {
     color: v.$secondary-color;
+    cursor: pointer;
   }
 }
 
@@ -30,6 +32,7 @@
     font-size: 2em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    cursor: pointer;
   }
 
   .exercises {
@@ -61,6 +64,7 @@
 
         span {
           font-size: 1.5em;
+          cursor: pointer;
         }
       }
 
@@ -99,6 +103,7 @@
 
           span {
             font-size: 1.5em;
+            cursor: pointer;
           }
         }
 
@@ -111,6 +116,7 @@
           font-size: 1.3em;
           width: 30%;
           text-align: center;
+          cursor: pointer;
         }
       }
     }

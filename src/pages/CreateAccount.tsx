@@ -8,6 +8,7 @@ import { SelectStyled } from "../styled-components/SelectStyled";
 import moment from "moment";
 import { useState } from "react";
 import axios from "axios";
+import { isValidEmail } from "../services/isValidEmail";
 
 export const CreateAccount = () => {
   const [email, setEmail] = useState("");
@@ -15,31 +16,36 @@ export const CreateAccount = () => {
   const [gender, setGender] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [password, setPassword] = useState("");
+  const [validationMsg, setValidationMsg] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const configuration = {
-      method: "post",
-      url: "https://weightwin-backend.vercel.app/auth/register",
-      data: {
-        email,
-        username,
-        gender,
-        dateOfBirth,
-        password,
-      },
-    };
+    if (isValidEmail(email)) {
+      const configuration = {
+        method: "post",
+        url: "https://weightwin-backend.vercel.app/auth/register",
+        data: {
+          email,
+          username,
+          gender,
+          dateOfBirth,
+          password,
+        },
+      };
 
-    axios(configuration)
-      .then(() => {
-        alert("User registrered!");
-      })
-      .catch(() => {
-        throw new Error();
-      });
-
-    navigate("/");
+      axios(configuration)
+        .then(() => {
+          alert("User registrered!");
+          navigate("/");
+        })
+        .catch(() => {
+          setValidationMsg("All fields are required!");
+          throw new Error();
+        });
+    } else {
+      setValidationMsg("Email must be a valid address!");
+    }
   };
 
   return (
@@ -98,6 +104,7 @@ export const CreateAccount = () => {
             }}
             required
           ></InputStyled>
+          <p>{validationMsg}</p>
           <div className="btn-and-link">
             <ButtonStyled type="submit" onClick={() => handleSubmit()}>
               Create account

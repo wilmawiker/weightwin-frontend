@@ -33,7 +33,7 @@ export const Home = () => {
   const handleShowExercises = () => {
     const configuration = {
       method: "get",
-      url: "http://localhost:3000/exercises",
+      url: "https://weightwin-backend.vercel.app/exercises",
     };
 
     axios(configuration)
@@ -52,7 +52,7 @@ export const Home = () => {
   const handleShowPlanned = () => {
     const configuration = {
       method: "get",
-      url: `http://localhost:3000/user/${user._id}/planned-workouts`,
+      url: `https://weightwin-backend.vercel.app/user/${user._id}/planned-workouts`,
       headers: { Authorization: `Bearer ${token}` },
     };
 
