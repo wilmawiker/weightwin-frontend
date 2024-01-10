@@ -16,7 +16,7 @@ export const ExerciseDetails = () => {
   }, []);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [exercises, setExercises] = useState<IExercise[]>(
+  const [exercises] = useState<IExercise[]>(
     JSON.parse(localStorage.getItem("listOfExercises") || "[]")
   );
 

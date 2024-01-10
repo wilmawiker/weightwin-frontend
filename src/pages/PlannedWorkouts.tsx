@@ -8,8 +8,6 @@ import { IWorkout } from "../models/IWorkout";
 
 export const PlannedWorkouts = () => {
   const [user, setUser] = useState<IUser>(defaultUser);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [token, setToken] = useState("");
   const [workouts, setWorkouts] = useState<IWorkout[]>([]);
 
   const navigate = useNavigate();
@@ -18,9 +16,6 @@ export const PlannedWorkouts = () => {
     const fetchData = async () => {
       const foundUser = JSON.parse(localStorage.getItem("user") || "{}");
       setUser(foundUser);
-
-      const foundToken = localStorage.getItem("token") || "";
-      setToken(foundToken);
 
       const foundWorkouts = JSON.parse(
         localStorage.getItem("planned-workouts") || "[]"

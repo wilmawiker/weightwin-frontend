@@ -15,8 +15,7 @@ export const WorkoutDetail = () => {
     setUser(foundUser);
   }, []);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [workouts, setWorkouts] = useState<IWorkout[]>(
+  const [workouts] = useState<IWorkout[]>(
     JSON.parse(localStorage.getItem("planned-workouts") || "[]")
   );
 
