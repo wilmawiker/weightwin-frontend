@@ -18,7 +18,7 @@ export const SelectModal = (props: IModalProps) => {
   useEffect(() => {
     const configuration = {
       method: "get",
-      url: "https://weightwin-frontend.vercel.app/exercises",
+      url: "https://weightwin-backend.vercel.app/exercises",
     };
 
     axios(configuration)
