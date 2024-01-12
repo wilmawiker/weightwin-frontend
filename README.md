@@ -1,30 +1,60 @@
-# React + TypeScript + Vite
+# WeightWin Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+WeightWin is a workout tracking app designed to help users keep track of their exercises, log their workouts, and analyze training statistics. This frontend part of the project is built using React, Vite, and TypeScript.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication**: Users can create accounts, log in, and secure their data.
+- **Workout Logging**: Log your daily workouts, including exercises, sets, reps, and weights used.
+- **Training Statistics**: Track and visualize your training progress over time.
+- **Exercise Database**: Browse a comprehensive database of exercises to add to your workouts.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- Vite
+- TypeScript
+- JavaScript (for backend)
+- Express (for backend)
+- MongoDB (for backend)
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Prerequisites
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Node.js
+- MongoDB (Make sure to have a MongoDB instance running)
+
+### Installation
+
+1. Clone the repository (frontend and backend):
+
+   ```bash
+   git clone https://github.com/wilmawiker/weightwin-frontend.git
+
+   git clone https://github.com/wilmawiker/weightwin-backend.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd weightwin-frontend
+
+   cd weightwin-backend
+   ```
+
+3. Install dependencies (for both frontend and backend):
+
+   ```bash
+   npm install
+   ```
+
+4. Create a .env file in the project root for the backend and configure the necessary environment variables (such as API endpoints, etc.).
+
+5. Start the servers for both the frontend and the backend:
+
+   ```bash
+   npm run dev
+   ```
+
+The backend application should now be running locally on <http://localhost:3000> and the frontend on <http://127.0.0.1:5173/>.
