@@ -36,7 +36,36 @@ export const Settings = () => {
   };
 
   const handleSaveInformation = () => {
-    if (isValidEmail(email)) {
+    if (email !== "") {
+      if (isValidEmail(email)) {
+        const userId = user._id;
+        const configuration = {
+          method: "put",
+          url: `https://weightwin-backend.vercel.app/user/${userId}`,
+          headers: { Authorization: `Bearer ${token}` },
+          data: {
+            email,
+            username,
+            gender,
+            dateOfBirth,
+            password,
+          },
+        };
+
+        axios(configuration)
+          .then((result) => {
+            setUser(result.data);
+            localStorage.setItem("user", JSON.stringify(result.data));
+            alert("User updated");
+          })
+          .catch(() => {
+            throw new Error();
+          });
+        setShow(false);
+      } else {
+        setValidationMsg("Email must be a valid address!");
+      }
+    } else {
       const userId = user._id;
       const configuration = {
         method: "put",
@@ -60,9 +89,6 @@ export const Settings = () => {
         .catch(() => {
           throw new Error();
         });
-      setShow(false);
-    } else {
-      setValidationMsg("Email must be a valid address!");
     }
   };
 
@@ -97,7 +123,7 @@ export const Settings = () => {
               <p>******</p>
               <div>
                 <label htmlFor="gender">Gender:</label>
-                <p>{user.gender}</p>
+                <p id="gender">{user.gender}</p>
               </div>
               <div>
                 <label htmlFor="dateOfBirth">Date of birth:</label>
